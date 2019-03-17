@@ -1,6 +1,17 @@
-## Build System
+The Android build system is a specialized Makefile framework. The framework looks for and parses `Android.mk` files in each project directory. Before you can build anything, you need to "enter" the build system by running:
+```
+$ . build/envsetup.sh
+$ lunch
+```
+You can then build any target with `m <build_target_name>`
 
-The Android build system is a specialized Makefile framework. The framework looks for and parses `Android.mk` files in each project directory.
+Some other useful build commands:
+
+ * `m clean-<projectname>` every module implicitly defines a clean target with the clean-<projectname> naming convention
+ * `m installclean` clean root, system, vendor, etc images. 
+ * `m sdk` create sdk located at out/host/${HOST-ARCH}/sdk/../../  You can then point Android Studio to the SDK location (File -> Project Structure -> SDK Location) Note: to get the sdk taget build to work, you need to have these in your product .mk: $(call inherit-product, development/build/product_sdk.mk) $(call inherit-product, sdk/build/product_sdk.mk) Alternatively, you can "lunch sdk_phone_arm64" and then "m sdk" https://developer.android.com/ndk/guides/android_mk 
+ * `m update-api`
+
 
 ### Build Exe
 
