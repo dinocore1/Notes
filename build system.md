@@ -1,3 +1,5 @@
+https://android.googlesource.com/platform/build/soong/+/HEAD/docs/best_practices.md
+
 The Android build system is a specialized Makefile framework. The framework looks for and parses `Android.mk` files in each project directory. Before you can build anything, you need to "enter" the build system by running:
 ```
 $ . build/envsetup.sh
@@ -97,3 +99,20 @@ Note: the `BUILD_JAVA_LIBRARY` creates a .jar and places it in the $ANDROID_PROD
 
 ### Soong
 More recently, a new build system [Soong](https://android.googlesource.com/platform/build/soong/) was introduced as an eventual replacement for the Makefiles. As of v.9 (PIE) Soong has not completely replaced Android.mk files yet, but it seems that all new project are encouraged to use it.
+
+### header-only library
+
+```
+cc_library_headers {
+	name: "libglm",
+	vendor_available: true,
+	export_include_dirs: ["."]
+}
+
+```
+
+Use header-only libraries with: 
+```
+LOCAL_HEADER_LIBRARIES += \
+    libglm
+```
