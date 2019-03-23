@@ -1,5 +1,3 @@
-https://android.googlesource.com/platform/build/soong/+/HEAD/docs/best_practices.md
-
 The Android build system is a specialized Makefile framework. The framework looks for and parses `Android.mk` files in each project directory. Before you can build anything, you need to "enter" the build system by running:
 ```
 $ . build/envsetup.sh
@@ -28,9 +26,10 @@ Some other useful build commands:
  * `m sdk` create sdk located at out/host/${HOST-ARCH}/sdk/../../  You can then point Android Studio to the SDK location (File -> Project Structure -> SDK Location) Note: to get the sdk taget build to work, you need to have these in your product .mk: $(call inherit-product, development/build/product_sdk.mk) $(call inherit-product, sdk/build/product_sdk.mk) Alternatively, you can "lunch sdk_phone_arm64" and then "m sdk" https://developer.android.com/ndk/guides/android_mk 
  * `m update-api`
 
-https://blog.jayway.com/2012/10/24/a-practical-approach-to-the-aosp-build-system/
 
+https://blog.jayway.com/2012/10/24/a-practical-approach-to-the-aosp-build-system/
 https://www.oreilly.com/library/view/embedded-android/9781449327958/ch04.html
+https://android.googlesource.com/platform/build/soong/+/HEAD/docs/best_practices.md
 
 ### Build Exe
 ```
@@ -116,3 +115,9 @@ Use header-only libraries with:
 LOCAL_HEADER_LIBRARIES += \
     libglm
 ```
+### Apps (Packages)
+
+Apps signed with the "platform" key have access to all system privileges. They can link to system libraries, even ones not in the /vendor/etc/public-libraries.txt
+
+https://source.android.com/devices/tech/config/namespaces_libraries
+
