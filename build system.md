@@ -3,13 +3,7 @@ The Android build system is a specialized Makefile framework. The framework look
 $ . build/envsetup.sh
 $ lunch
 ```
-You can then build any target with `m <build_target_name>` The build env has a few useful env vars:
- * `ANDROID_PRODUCT_OUT` absolute path to target build dir
- * `ANDROID_HOST_OUT` absolute path to host build dir
- * `PATH` updated with toolchan
- * `TARGET_PRODUCT`
- * `TARGET_BUILD_VARIANT`
- * `TARGET_BUILD_TYPE`
+You can then build any target with `m <build_target_name>`. The default build target is `droid` which ultimatly create the final disk images in `out/target/product/<devicename>`.
 
 The final build results are: 
  * `boot.img` contains the linux kernel and init ramdisk
@@ -18,6 +12,15 @@ The final build results are:
  * `vendor.img` mounted `/vendor` - kinda like the system.img but for vendor stuff
  * `userdata.img` mounted `/data`
  * `cache.img` usually an empty ext4 image
+
+The build env has a few useful env vars:
+ * `ANDROID_PRODUCT_OUT` absolute path to target build dir
+ * `ANDROID_HOST_OUT` absolute path to host build dir
+ * `PATH` updated with toolchain
+ * `TARGET_PRODUCT`
+ * `TARGET_BUILD_VARIANT`
+ * `TARGET_BUILD_TYPE`
+
 
 Some other useful build commands:
 
