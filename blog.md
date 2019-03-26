@@ -1,4 +1,54 @@
 
+### 2019-03-26
+
+Today I figured out the proper way to set the jenkins user inside a docker image. The Jenkinsfile gets the uid from the locally running node and stores it in `jenkins_user_id`. Then when it goes to build the docker image, it pass the uid as a build arg using `--build-arg JENKINS_UID=+jenkins_user_id`. This will always ensure that the jenkins user on the worker node is the same user in the docker image.
+
+Dockerfile:
+```
+FROM ubuntu:18.04
+
+ARG JENKINS_UID=99
+ARG JENKINS_GID=99
+ARG JENKINS_USER=jenkins
+ARG JENKINS_GROUP=jenkins
+
+RUN groupadd -g $JENKINS_GID $JENKINS_GROUP
+RUN useradd -m -u $JENKINS_UID -g $JENKINS_GROUP $JENKINS_USER
+
+USER $JENKINS_USER
+
+RUN git config --global user.name "Jenkins" && \
+    git config --global user.email "admin@videray.com"
+
+```
+
+Jenkinsfile:
+```
+def jenkins_user_id
+def jenkins_group_id
+
+node {
+    jenkins_user_id = sh(returnStdout: true, script: 'id -u').trim()
+    jenkins_group_id = sh(returnStdout: true, script: 'id -g').trim()
+}
+
+pipeline {
+    agent {
+        dockerfile {
+            label 'large && linux'
+            additionalBuildArgs '--build-arg JENKINS_UID=' + jenkins_user_id + ' --build-arg JENKINS_GID=' + jenkins_group_id
+        }
+    }
+
+    stages {
+        stage('Build') {
+            steps {
+                sh 'cd /build && repo sync --force-sync'
+                sh 'cd /build && ./aosp_build.sh'
+            }
+        }
+}
+```
 
 ### 2019-03-22
 
