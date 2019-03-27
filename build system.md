@@ -102,6 +102,29 @@ Note: the `BUILD_JAVA_LIBRARY` creates a .jar and places it in the $ANDROID_PROD
 ### Soong
 More recently, a new build system [Soong](https://android.googlesource.com/platform/build/soong/) was introduced as an eventual replacement for the Makefiles. As of v.9 (PIE) Soong has not completely replaced Android.mk files yet, but it seems that all new project are encouraged to use it.
 
+### library
+
+```
+cc_library {
+    name: "libvideray",
+    vendor: true,
+    export_include_dirs: ["include"],
+    srcs: [
+        "src/utils.cpp",
+        "src/vdefile.cpp"
+    ],
+    shared_libs: [
+        "libcutils",
+        "libutils",
+        "libz",
+        "libpng",
+        "liblz4"
+    ],
+    cflags: ["-g","-O0"]
+}
+```
+
+
 ### header-only library
 
 ```
