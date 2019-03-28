@@ -99,6 +99,25 @@ include $(BUILD_STATIC_JAVA_LIBRARY)
 ```
 Note: the `BUILD_JAVA_LIBRARY` creates a .jar and places it in the $ANDROID_PRODUCT_OUT/system/framework where as the static does not create a shared jar.
 
+### Unit test
+
+```
+include $(CLEAR_VARS)
+LOCAL_MODULE := illusion_tests
+LOCAL_MODULE_TAGS := tests
+LOCAL_SHARED_LIBRARIES := \
+  liblog \
+  libcutils \
+  libutils \
+  libOpenCL \
+  libIllusion
+
+LOCAL_SRC_FILES := \
+  test/main.cpp
+
+include $(BUILD_NATIVE_TEST)
+```
+
 ### Soong
 More recently, a new build system [Soong](https://android.googlesource.com/platform/build/soong/) was introduced as an eventual replacement for the Makefiles. As of v.9 (PIE) Soong has not completely replaced Android.mk files yet, but it seems that all new project are encouraged to use it.
 
@@ -141,6 +160,25 @@ Use header-only libraries with:
 LOCAL_HEADER_LIBRARIES += \
     libglm
 ```
+
+### unit tests
+
+```
+cc_test {
+   name: "videray_tests",
+   defaults: ["libvideray_defaults"],
+   /* host_supported: true, */
+   test_suites: ["device-tests"],
+   srcs: [
+     "test/main.cpp",
+     "test/vdefiletest.cpp"
+   ],
+   shared_libs: [
+        "libvideray"
+   ]
+}
+```
+
 ### Apps (Packages)
 
 Apps signed with the "platform" key have access to all system privileges. They can link to system libraries, even ones not in the /vendor/etc/public-libraries.txt
