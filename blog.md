@@ -1,4 +1,8 @@
 
+### 2019-03-28
+
+Today I learned that all *unstripped* android binaries are stored in the `$ANDROID_PRODUCT_OUT/symbols` dir. The binaries stored here are useful for debugging.
+
 ### 2019-03-26
 
 Today I figured out the proper way to set the jenkins user inside a docker image. The Jenkinsfile gets the uid from the locally running node and stores it in `jenkins_user_id`. Then when it goes to build the docker image, it pass the uid as a build arg using `--build-arg JENKINS_UID=+jenkins_user_id`. This will always ensure that the jenkins user on the worker node is the same user in the docker image.
