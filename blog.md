@@ -1,4 +1,11 @@
 
+## 2019-04-02
+
+To read the CPU temp: https://www.cyberciti.biz/faq/linux-find-out-raspberry-pi-gpu-and-arm-cpu-temperature-command/
+```
+cat /sys/class/thermal/thermal_zone0/temp
+```
+
 ### 2019-03-28
 
 Today I learned that all *unstripped* android binaries are stored in the `$ANDROID_PRODUCT_OUT/symbols` dir. The binaries stored here are useful for debugging.
