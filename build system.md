@@ -161,6 +161,18 @@ LOCAL_HEADER_LIBRARIES += \
     libglm
 ```
 
+### binaries
+
+```
+cc_binary {
+    name: "gzip",
+    srcs: ["src/test/minigzip.c"],
+    shared_libs: ["libz"],
+    stl: "none",
+}
+```
+
+
 ### unit tests
 
 ```
