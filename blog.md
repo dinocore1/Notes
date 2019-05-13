@@ -1,4 +1,69 @@
 
+## 2019-05-13
+
+AOSP creates a GPT image as part of the build if `BOARD_BPT_INPUT_FILES` is defined in BoardConfig.mk. The tool that builds the image is system/tools/bpt. NXP forked and added the `first_partition_offset` feature. Later, AOSP added its own simular feature but named it `partitions_offset_begin`.
+
+```
+BOARD_BPT_INPUT_FILES += device/videray/flintlock/flintlock-partitions.bpt
+```
+bpt is a json file:
+```
+{
+    "settings": {
+        "disk_size": "15930 MB",
+        "disk_alignment": 512,
+        "partitions_offset_begin": "33 KiB"
+    },
+    "partitions": [
+        {
+            "label": "bootloader",
+            "size": "2 MiB"
+        },
+        {
+            "label": "boot",
+            "size": "32 MiB"
+        },
+        {
+            "label": "recovery",
+            "size": "32 MiB"
+        },
+        {
+            "label": "system",
+            "size": "1700 MiB"
+        },
+        {
+            "label": "vendor",
+            "size": "200 MiB"
+        },
+        {
+            "label": "cache",
+            "size": "512 MiB"
+        },
+        {
+            "label": "misc",
+            "size": "1 MiB"
+        },
+        {
+            "label": "userdata",
+            "size": "6 GiB"
+        },
+        {
+            "label": "fbmisc",
+            "size": "128 KiB"
+        },
+        {
+            "label": "vbmeta",
+            "size": "1 MiB"
+        },
+        {
+            "label": "storage",
+            "grow": "true"
+        }
+    ]
+}
+```
+
+
 ## 2019-04-02
 
 To read the CPU temp: https://www.cyberciti.biz/faq/linux-find-out-raspberry-pi-gpu-and-arm-cpu-temperature-command/
