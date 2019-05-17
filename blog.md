@@ -1,4 +1,11 @@
 
+## 2019-05-17
+
+Working on implementing OTA updates. The bootloader (u-boot) boots into recovery mode when either: (1) the users is pressing a special hardware button or (2) reading data from the 'misc' partition.
+
+
+The Android system writes 'boot-recovery' into the misc partition when it has finished downloading an OTA update file and now wishes to reboot into recovery mode. The bootloader should therefor read the misc partition and look for the special 'boot-recovery' command and if found, boot into recovery mode. In uboot, booting into recovery mode is performed by running the `boota recovery` command. Reading the misc parition is handled by `f_fastboot.c::fastboot_get_bootmode` and then `bcb_read_command`. Note: both `CONFIG_BCB_SUPPORT` and `CONFIG_ANDROID_RECOVERY` need to be defined.
+
 ## 2019-05-13
 
 AOSP creates a GPT image as part of the build if `BOARD_BPT_INPUT_FILES` is defined in BoardConfig.mk. The tool that builds the image is system/tools/bpt. NXP forked and added the `first_partition_offset` feature. Later, AOSP added its own simular feature but named it `partitions_offset_begin`.
