@@ -26,3 +26,9 @@ From the android command line, you can reboot the device by issuing:
 the Reboot command code is found in the project system/core/reboot when running reboot with the "bootloader" argument, the reboot command will set the "sys.powerctl" property value to "bootloader"
 
 The property change is handled in the [init process](http://androidxref.com/8.1.0_r33/xref/system/core/init/init.cpp#178) which then calls [HandlePowerctlMessage](http://androidxref.com/8.1.0_r33/xref/system/core/init/reboot.cpp#466), which then calls [write_reboot_bootloader](http://androidxref.com/8.1.0_r33/xref/bootable/recovery/bootloader_message/bootloader_message.cpp#194) which writes the string "bootonce-bootloader" into the misc partition.
+
+## Updater ##
+
+'Updater' is the name of exe that runs the updater script that does the actual work of applying the update.
+
+https://source.android.com/devices/tech/ota/nonab/device_code#updater
