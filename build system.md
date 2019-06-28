@@ -119,7 +119,11 @@ include $(BUILD_NATIVE_TEST)
 ```
 
 ### Soong
-More recently, a new build system [Soong](https://android.googlesource.com/platform/build/soong/) was introduced as an eventual replacement for the Makefiles. As of v.9 (PIE) Soong has not completely replaced Android.mk files yet, but it seems that all new project are encouraged to use it.
+More recently, a new build system [Soong](https://android.googlesource.com/platform/build/soong/) was introduced as an eventual replacement for the Makefiles. As of v.9 (PIE) Soong has not completely replaced Android.mk files yet, but it seems that all new project are encouraged to use it. To bridge the gap, the tool `androidmk` is used to translate Android.mk files to Android.bp files. Try it for yourself:
+
+```
+$ androidmk Android.mk
+```
 
 ### library
 
