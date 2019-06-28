@@ -125,6 +125,8 @@ More recently, a new build system [Soong](https://android.googlesource.com/platf
 $ androidmk Android.mk
 ```
 
+https://stackoverflow.com/questions/48578960/how-to-include-prebuilt-library-in-android-bp-file
+
 ### library
 
 ```
