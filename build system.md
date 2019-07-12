@@ -134,6 +134,7 @@ cc_library {
     name: "libvideray",
     vendor: true,
     export_include_dirs: ["include"],
+    local_include_dirs: ["src/main/headers"],
     srcs: [
         "src/utils.cpp",
         "src/vdefile.cpp"
@@ -144,6 +145,9 @@ cc_library {
         "libz",
         "libpng",
         "liblz4"
+    ],
+    static_libs: [
+    	"libvdr"
     ],
     cflags: ["-g","-O0"]
 }
