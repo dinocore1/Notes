@@ -92,6 +92,16 @@ LOCAL_MODULE_SUFFIX := .so
 LOCAL_MODULE_RELATIVE_PATH := vndk-sp
 include $(BUILD_PREBUILT)
 ```
+### Prebuilt APK
+```
+include $(CLEAR_VARS)
+LOCAL_MODULE := myapp
+LOCAL_SRC_FILES := myapp.apk
+LOCAL_MODULE_CLASS := APPS
+LOCAL_VENDOR_MODULE := true
+include $(BUILD_PREBUILT)
+```
+
 ### Java lib
 ```
 include $(BUILD_JAVA_LIBRARY)
