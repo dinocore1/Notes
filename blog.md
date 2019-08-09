@@ -1,4 +1,74 @@
 
+## 2019-07-09
+
+
+```
+adb logcat -v time -b radio
+```
+
+```
+adb shell setprop sys.ril.type QMI
+```
+
+### AT Mode
+
+```
+busybox microcom -s 115200 /dev/ttyUSB2
+AT
+AT!GSTATUS?
+AT+COPS?
+AT!SCACT=1,1
+```
+
+#### LTE
+
+The modem was only connecting to 3g when it came outta the box. This seemed to fix it:
+
+https://forum.sierrawireless.com/t/mc7455-t-mobile-cannot-connect-when-band-09-lte-all/14469
+
+
+at+cops=?
++cops: (1,"T-Mobile","T-Mobile","310260",7),(1,"312 530","312 530","312530",7),(1,"311 882","311 882","311882",7),(1,"AT&T","AT&T","310410",7),(1,"FirstNet","FirstNet","313100",7),(1,"Sprint","Sprint","310120",7),(1,"Verizon","Verizon","311480",7),,(0,1,2,3,4),(0,1,2)
+
+OK
+at+cops=1,2"310260",7
+ERROR
+at+cops=1,2,"310260",7
+OK
+at!priid?
+PRI Part Number: 9907344
+Revision: 002.001
+Customer: Generic-M2M
+
+Carrier PRI: 9999999_9907258_SWI9X50C_01.07.02.00_00_ATT_002.008_004
+Carrier PRI: 9999999_9907259_SWI9X50C_01.09.04.00_00_GENERIC_002.019_000
+
+OK
+at!gstatus?
+!GSTATUS: 
+Current Time:  4306		Temperature: 35
+Reset Counter: 2		Mode:        ONLINE         
+System mode:   LTE        	PS state:    Attached     
+LTE band:      B66    		LTE bw:      20 MHz  
+LTE Rx chan:   0		LTE Tx chan: 132272
+LTE SSC1 state:NOT ASSIGNED
+LTE SSC2 state:NOT ASSIGNED
+LTE SSC3 state:NOT ASSIGNED
+LTE SSC4 state:NOT ASSIGNED
+EMM state:     Registered     	Normal Service 
+RRC state:     RRC Idle       
+IMS reg state: No Srv  		
+
+PCC RxM RSSI:  -87		PCC RxM RSRP:  -119
+PCC RxD RSSI:  -55		PCC RxD RSRP:  -86
+Tx Power:      --		TAC:         550d (21773)
+RSRQ (dB):     -11.6		Cell ID:     00a51b02 (10820354)
+SINR (dB):     12.2
+
+
+
+REQUEST_SET_PREFERRED_NETWORK_TYPE error: com.android.internal.telephony.CommandException: MODE_NOT_SUPPORTED ret=
+
 ## 2019-05-17
 
 Working on implementing OTA updates. The bootloader (u-boot) boots into recovery mode when either: (1) the users is pressing a special hardware button or (2) reading data from the 'misc' partition.
