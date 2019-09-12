@@ -1,4 +1,8 @@
 
+## 2019-09-12
+
+Workign on a problem in the Android recovery mode when tring to perform a FPGA flash. There is some error with SPI transfer. I noticed that the linux boot logs also showed an error with the SPI device complaining that the SPI DMA firmware is not ready. Turns out I needed to add the `imx/sdma/sdma-imx7d.bin` firmware to the recovery's initram image under `/lib/firmware`.
+
 ## 2019-09-11
 
 Signing OTA packages for sideloading:
