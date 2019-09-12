@@ -1,4 +1,17 @@
 
+## 2019-09-11
+
+Signing OTA packages for sideloading:
+
+```
+java -Djava.library.path="out/host/linux-x86/lib64" -jar out/host/linux-x86/framework/signapk.jar -w /data/projects/android-firmware-build/videray-certs/releasekey.x509.pem /data/projects/android-firmware-build/videray-certs/releasekey.pk8 inc_flintlock_beta_0_4_30-flintlock_beta_0_4_32.zip signed.zip
+```
+http://jhshi.me/2013/12/02/how-to-create-and-sign-ota-package/index.html#.XXlbRHVKglU
+
+https://source.android.com/devices/tech/ota/nonab/inside_packages#edify-syntax
+
+
+
 ## 2019-07-09
 
 
