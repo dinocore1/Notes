@@ -1,3 +1,31 @@
+## 2019-09-16
+
+Working on screen blank bug today. I think that the problem is that when the screen comes back on, sometimes the screen is out-of-sync. Theory: this is because abigail never pulls power from the screen so the LVDS receiver never looses state. However, the SoM totally looses state.
+
+Potential fix:
+  * __Fix 1:__ It does not seem that Abigail is currently pulling power from the screen when the power is pressed. Experment with pulling power, maybe that will fix everything
+  * __Fix 2:__ Hack the KMS android display driver to never send the signal that poweroffs the display
+  
+```
+diff --git a/display/display/KmsDisplay.cpp b/display/display/KmsDisplay.cpp
+index 0a7138f..387f96f 100644
+--- a/display/display/KmsDisplay.cpp
++++ b/display/display/KmsDisplay.cpp
+@@ -386,6 +386,10 @@ int KmsDisplay::setPowerMode(int mode)
+         return 0;
+     }
+ 
++    if(mPowerMode != DRM_MODE_DPMS_ON) {
++        return 0;
++    }
++
+     int err = drmModeConnectorSetProperty(mDrmFd, mConnectorID,
+                   mConnector.dpms_id, mPowerMode);
+     if (err != 0) {
+
+```
+
+
 
 ## 2019-09-12
 
