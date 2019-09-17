@@ -30,6 +30,8 @@ PRODUCT_COPY_FILES += \
 	device/videray/flintlock/privapp-permissions-flintlock.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/privapp-permissions-flintlock.xml \
 ```
 
+NOTE: For this to work, the app must be installed in the priv-app location. This is done by adding: `LOCAL_PRIVILEGED_MODULE := true` to the Android.mk.
+
 https://source.android.com/devices/tech/config/perms-whitelist
 
 ## 2019-09-16
