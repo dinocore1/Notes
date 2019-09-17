@@ -1,3 +1,37 @@
+## 2019-09-17
+
+Working on android app permissions. AOSP builds can include a privapp-permission-DEVICE_NAME.xml to grant system-level privileges to app.
+
+
+privapp-permissions-flintlock.xml
+```
+<?xml version="1.0" encoding="utf-8"?>
+<permissions>
+
+    <privapp-permissions package="com.videray.systemupdater">
+        <permission name="android.permission.ACCESS_CACHE_FILESYSTEM"/>
+        <permission name="android.permission.WRITE_EXTERNAL_STORAGE" />
+        <permission name="android.permission.ACCESS_DOWNLOAD_MANAGER" />
+        <permission name="android.permission.ACCESS_DOWNLOAD_MANAGER_ADVANCED" />
+        <permission name="android.permission.REBOOT"/>
+        <permission name="android.permission.RECOVERY"/>
+    </privapp-permissions>
+
+    <privapp-permissions package="com.videray.sparklauncher">
+        <permission name="android.permission.BIND_APPWIDGET" />
+        <permission name="android.permission.GET_ACCOUNTS_PRIVILEGED" />
+    </privapp-permissions>
+
+</permissions>
+```
+
+```
+PRODUCT_COPY_FILES += \
+	device/videray/flintlock/privapp-permissions-flintlock.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/privapp-permissions-flintlock.xml \
+```
+
+https://source.android.com/devices/tech/config/perms-whitelist
+
 ## 2019-09-16
 
 Working on screen blank bug today. I think that the problem is that when the screen comes back on, sometimes the screen is out-of-sync. Theory: this is because abigail never pulls power from the screen so the LVDS receiver never looses state. However, the SoM totally looses state.
