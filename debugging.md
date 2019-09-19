@@ -33,6 +33,9 @@ Debugging native process with VSCode:
 ```
 This will start the exe on the target and print out vscode debug config, cut-paste into VSCode launch.json and hit F5 to start debugging. Gdbdebug.py can all attach to a running process, checkout the --help option for details 
 
+
+https://www.gamedev.net/articles/programming/general-and-gameplay-programming/android-debugging-with-visual-studio-code-r4820/
+
 ### Adding Debug Trace Logging 
 
 AOSP comes with nice function level tracing. Add to your code: 
