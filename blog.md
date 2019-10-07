@@ -1,3 +1,14 @@
+## 2019-10-03
+
+Setting AOSP default heap size is defined with the system property: `dalvik.vm.heapsize`
+
+See `/frameworks/base/core/java/android/app/AcitivyManager.java`
+
+See [Memory Management in Android](https://medium.com/@zpcat/memory-management-in-android-444a71e5accb)
+
+If the propety is not set, it defaults to 16m.
+
+
 ## 2019-09-17
 
 Working on android app permissions. AOSP builds can include a privapp-permission-DEVICE_NAME.xml to grant system-level privileges to app.
