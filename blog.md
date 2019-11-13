@@ -1,3 +1,29 @@
+## 2019-11-13
+
+IP phones, 3cx, and PFSense. Today, I finally figured out how to correctly setup IP phones behind a PFSense firewall. PFSense seems to come out-of-the-box configured to act as a Symmetric NAT. This type of NAT does not work with STUN NAT hole-punching technique. As a result, when making a call from the IP phone, the phone would ring, but there was no audio. To fix the problem, I configured PFSense to act as a Full-cone NAT. 
+
+From PFSense web-GUI:
+
+Firewall->NAT->Outbound
+select hybrid outbound NAT
+add a new mapping: config the source IP Phone lan (10.25.60.0/24) and check the box that says static port.
+
+https://en.wikipedia.org/wiki/Network_address_translation
+
+## 2019-10-07
+
+minicom send ymodem file with u-boot
+
+ - get into u-boot
+ - loady
+ - Ctrl-A S
+ - choose ymodem
+
+Write to mmc:
+```
+$ mmc write ${loadaddr} 0 0x42
+```
+
 ## 2019-10-03
 
 Setting AOSP default heap size is defined with the system property: `dalvik.vm.heapsize`
