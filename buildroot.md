@@ -1,0 +1,1 @@
+https://bootlin.com/blog/buildroot-long-term-support-releases-from-2017-02-to-2017-02-6-and-counting/
