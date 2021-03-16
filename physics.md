@@ -25,3 +25,10 @@ https://www.toptal.com/game/video-game-physics-part-i-an-introduction-to-rigid-b
 http://www.cs.cmu.edu/~baraff/sigcourse/notesd1.pdf
 
 https://en.wikipedia.org/wiki/Lift-induced_drag
+
+## Electro/Magnetic Force
+
+Magnetic force is a result of special relativity
+https://www.youtube.com/watch?v=1TKSfAkWWN0
+
+https://www.youtube.com/watch?v=hFAOXdXZ5TM
